@@ -1,0 +1,46 @@
+{
+  "name": "openotes",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "aplication which provide pisibility to create your own notes and keep them in database. It's multiusers aplication with registration and login features. Project is running on React(front) + Rest API(back), SPA model",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szymonMCS/OpeNotes.git"
+  },
+  "author": "Szymon Maciejewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szymonMCS/OpeNotes/issues"
+  },
+  "homepage": "https://github.com/szymonMCS/OpeNotes#readme",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "@types/react": "^19.0.11",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "bootstrap": "^5.3.3",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.3.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.2"
+  }
+}
