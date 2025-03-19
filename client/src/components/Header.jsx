@@ -1,12 +1,12 @@
 import React from "react";
-import HighlightIcon from "@mui/icons-material/Highlight";
+import TungstenIcon from '@mui/icons-material/Tungsten';
 
 function Header() {
   return (
     <header>
       <h1>
-        <HighlightIcon />
-        Keeper
+        <TungstenIcon sx={{ fontSize: 50 }}/>
+        OpeNotes
       </h1>
     </header>
   );
