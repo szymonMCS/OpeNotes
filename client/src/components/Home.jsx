@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="main-content">
-      <Header />
       <div className="jumbotron-centered">
         <div className="container text-center">
           <FontAwesomeIcon icon={faNoteSticky} size="6x" />
@@ -21,7 +20,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

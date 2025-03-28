@@ -12,27 +12,28 @@ body {
   background: #eee;
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   padding: 0 16px;
-  min-height: 100vh; /* Zapewnia, że body zawsze ma co najmniej wysokość okna */
-  position: relative; /* Konieczne dla pozycji absolute stopki */
-  margin-bottom: 2.5rem; /* Zapewnia miejsce na stopkę */
+  min-height: 100vh;
+  position: relative;
+  margin-bottom: 2.5rem;
 }
 
 header {
   background-color: #f5ba13;
   margin: auto -16px;
   padding: 16px 32px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 0 rgb(241, 240, 240);
+  display: flex;
+  justify-content: space-between;
 }
 
-header h1 {
+header h1 h2 {
   color: #fff;
   font-family: "McLaren", cursive;
   font-weight: 200;
 }
 
-/* Stopka z position absolute */
 footer {
-  position: absolute; /* Przyklejona do dołu */
+  position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
@@ -45,7 +46,6 @@ footer p {
   color: #ccc;
 }
 
-/* Stylizacja dla jumbotron-centered */
 .jumbotron-centered {
   background-color: #fff;
   border-radius: 10px;
@@ -154,4 +154,11 @@ form.create-note button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+
+.linkGoogle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
