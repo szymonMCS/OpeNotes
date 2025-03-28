@@ -1,10 +1,25 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import CreateArea from "./CreateArea";
+import axios from "axios";
+import { baseApiURL } from "./App";
 
-function Notebook(props){
+function Notebook({ user }){
   const [notes, setNotes] = useState([]);
+
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const { data } = await axios.get(`${baseApiURL}/api/check-session`);
+        if (data.loggedIn) {
+          setUser(data.user);
+        }
+      } catch (err) {
+        console.error("session error", err);
+      }
+    };
+    fetchSession();
+  }, []);
 
   function addNote(newNote) {
     setNotes(prevNotes => {
@@ -22,7 +37,6 @@ function Notebook(props){
 
   return (
     <div>
-      <Header />
       <CreateArea onAdd={addNote} />
       {notes.map((noteItem, index) => {
         return (
@@ -35,7 +49,6 @@ function Notebook(props){
           />
         );
       })}
-      <Footer />
     </div>
   );
 
