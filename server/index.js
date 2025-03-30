@@ -275,8 +275,18 @@ app.post("/api/postnote", async (req,res) => {
 
 });
 
-app.delete("/api/note", async (req,res) => {
-
+app.delete("/api/delete", async (req,res) => {
+  const  id = req.body.id;
+  try {
+    const result = await db.query("DELETE FROM notes WHERE noteid = $1", [id]);
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+    return res.status(200).json({message: "Note succesfully deleted."});
+  } catch (err) {
+    console.error("Error while deleting note:", err);
+    return res.status(500).json({ message: "Server error during removing from database" });
+  }
 });
 
 app.listen(port, () => {

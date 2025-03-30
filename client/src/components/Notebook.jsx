@@ -46,10 +46,19 @@ function Notebook({user}){
     }
   }
 
-  function deleteNote(id) {
-    setUserNotes((prevNotes) => {
-      return prevNotes.filter((noteItem) => noteItem.noteid !== id);
-    });
+  const deleteNote = async (id) => {
+    try {
+      const response = await axios.delete(`${baseApiURL}/api/delete`, {
+        data: { id }
+      });
+      if (response.status === 200){
+        setUserNotes((prevNotes) => {
+          return prevNotes.filter((noteItem) => noteItem.noteid !== id);
+        });
+      }
+    } catch (error) {
+      console.error("Error during data deletion:", error);
+    }
   }
 
   return (
