@@ -258,13 +258,17 @@ app.get("/api/shownotes", async (req,res) => {
 
 app.post("/api/postnote", async (req,res) => {
   const { title, content, userid } = req.body;
+  console.log("title:",title);
+  console.log("content:",content);
+  console.log("userid:",userid);
   try {
     const result = await db.query(
       "INSERT INTO notes (title, content, userid) VALUES ($1, $2, $3) RETURNING *",
       [title, content, userid]
     );
+    console.log("resulttt",result);
     if (result.rows.length > 0){
-      return res.status(200).json({message: "note addded succesfully."});
+      return res.status(201).json({message: "note added succesfully."});
     } else {
       return res.status(400).json({ message: "Note was not added." });
     }
@@ -272,7 +276,6 @@ app.post("/api/postnote", async (req,res) => {
     console.error("Error while adding note to db:", err);
     return res.status(500).json({ message: "Server error during adding to database" });
   }
-
 });
 
 app.delete("/api/delete", async (req,res) => {
