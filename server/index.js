@@ -236,6 +236,49 @@ app.get("/logout", (req, res) => {
   });
 });
 
+
+app.get("/api/shownotes", async (req,res) => {
+  try {
+    console.log(`req.user.id: ${req.user.id}`);
+    const result = await db.query(
+      "SELECT noteid, title, content FROM notes WHERE userid = $1",
+      [req.user.id]
+    );
+    const userNotes = result.rows;
+    if (userNotes){
+      res.status(200).json({ data: userNotes});
+    } else {
+      return res.status(404).json({ message: "No notes found" });
+    }
+  } catch (err) {
+    console.error("Error while fetching notes:", err);
+    return res.status(500).json({ message: "Server error while fetching notes" });
+  }
+});
+
+app.post("/api/postnote", async (req,res) => {
+  const { title, content, userid } = req.body;
+  try {
+    const result = await db.query(
+      "INSERT INTO notes (title, content, userid) VALUES ($1, $2, $3) RETURNING *",
+      [title, content, userid]
+    );
+    if (result.rows.length > 0){
+      return res.status(200).json({message: "note addded succesfully."});
+    } else {
+      return res.status(400).json({ message: "Note was not added." });
+    }
+  } catch (err) {
+    console.error("Error while adding note to db:", err);
+    return res.status(500).json({ message: "Server error during adding to database" });
+  }
+
+});
+
+app.delete("/api/note", async (req,res) => {
+
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
