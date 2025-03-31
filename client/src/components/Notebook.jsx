@@ -40,6 +40,7 @@ function Notebook({user}){
         setUserNotes(prevNotes => {
           return [...prevNotes, newNote];
         });
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error during add process:", error);
@@ -61,6 +62,23 @@ function Notebook({user}){
     }
   }
 
+  const editNote = async (data) => {
+    try {
+      const response = await axios.patch(`${baseApiURL}/api/edit`, {
+        data: {
+          id: data.id, 
+          title: data.title, 
+          content: data.content
+        }
+      });
+      if (response.status === 200 || response.status === 201){
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error during data edition:", error);
+    }
+  }
+
   return (
     <div>
       <CreateArea onAdd={addNote} />
@@ -72,6 +90,7 @@ function Notebook({user}){
             title={noteItem.title}
             content={noteItem.content}
             onDelete={deleteNote}
+            onEdit={editNote}
           />
         );
       })}
