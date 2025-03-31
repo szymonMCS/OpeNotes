@@ -258,15 +258,11 @@ app.get("/api/shownotes", async (req,res) => {
 
 app.post("/api/postnote", async (req,res) => {
   const { title, content, userid } = req.body;
-  console.log("title:",title);
-  console.log("content:",content);
-  console.log("userid:",userid);
   try {
     const result = await db.query(
       "INSERT INTO notes (title, content, userid) VALUES ($1, $2, $3) RETURNING *",
       [title, content, userid]
     );
-    console.log("resulttt",result);
     if (result.rows.length > 0){
       return res.status(201).json({message: "note added succesfully."});
     } else {
@@ -289,6 +285,26 @@ app.delete("/api/delete", async (req,res) => {
   } catch (err) {
     console.error("Error while deleting note:", err);
     return res.status(500).json({ message: "Server error during removing from database" });
+  }
+});
+
+app.patch("/api/edit", async (req,res) => {
+  const id = req.body.data.id;
+  const title = req.body.data.title;
+  const content = req.body.data.content;
+  try {
+    const result = await db.query(
+      "UPDATE notes SET title = $1, content = $2 WHERE noteid = $3 RETURNING *",
+      [title, content, id]
+    );
+    if (result.rows.length > 0){
+      return res.status(201).json({message: "note edited succesfully."});
+    } else {
+      return res.status(400).json({ message: "Note was not edited." });
+    }
+  } catch (err) {
+    console.error("Error while editing note to db:", err);
+    return res.status(500).json({ message: "Server error during editing database" });
   }
 });
 
