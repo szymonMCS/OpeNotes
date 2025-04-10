@@ -36,11 +36,10 @@ function Notebook({user}){
         { withCredentials: true }
       );
       console.log(response.data);
-      if (response.status === 200) {
+      if (response.status === 201) {
         setUserNotes(prevNotes => {
           return [...prevNotes, newNote];
         });
-        window.location.reload();
       }
     } catch (error) {
       console.error("Error during add process:", error);
@@ -71,7 +70,7 @@ function Notebook({user}){
           content: data.content
         }
       });
-      if (response.status === 200 || response.status === 201){
+      if (response.status === 201){
         window.location.reload();
       }
     } catch (error) {

@@ -19,11 +19,11 @@ function Header({ user, setUser }) {
 
   return (
     <header>
-      <h1 onClick={() => {navigate("/")}}>
+      <h1 onClick={() => {navigate("/")}} className="link">
         <TungstenIcon sx={{ fontSize: 50 }} />
         OpeNotes
       </h1>
-      {user && <h2 style={{ marginTop: 5 }} onClick={logout}>Logout</h2>}
+      {user && <h2 style={{ marginTop: 5 }} className="link" onClick={logout}>Logout</h2>}
     </header>
   );
 }
