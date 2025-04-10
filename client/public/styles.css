@@ -162,3 +162,7 @@ form.create-note button {
   align-items: center;
   text-align: center;
 }
+
+.link {
+  cursor: pointer;
+}
